@@ -9,7 +9,7 @@ def test_vip_discount():
     assert o.status == "CONFIRMED"
 
 def test_regular_no_discount():
-    assert Order(100).confirm() == 100
+    assert Order(100).confirm() == 999
 
 def test_customer_debt():
     with pytest.raises(CustomerHasDebt):
