@@ -1,9 +1,10 @@
 ﻿from dataclasses import dataclass
 
-
 class CustomerHasDebt(Exception):
     pass
 
+class OrderAlreadyConfirmed(ValueError):
+    """El pedido ya fue confirmado y no puede confirmarse otra vez."""
 
 class OrderAlreadyConfirmed(ValueError):
     """El pedido ya fue confirmado y no puede confirmarse otra vez."""
@@ -47,6 +48,9 @@ class CalculadoraReembolso:
     """
     @staticmethod
     def calcular(monto_pagado: float, horas_anticipacion: float) -> float:
+        if monto_pagado < 0 or horas_anticipacion < 0:
+            raise ValueError("El monto y las horas de anticipación no pueden ser negativos.")
+            
         if horas_anticipacion > 24.0:
             return monto_pagado  # 100% de reembolso
         elif 6.0 <= horas_anticipacion <= 24.0:
