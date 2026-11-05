@@ -1,5 +1,5 @@
 import pytest
-from src.domain import Order, CustomerHasDebt
+from src.domain import CustomerHasDebt, Order
 
 
 # 1. Caso de Éxito: Cliente regular (No VIP) sin deuda
