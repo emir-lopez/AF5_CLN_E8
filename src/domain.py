@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+﻿from dataclasses import dataclass
 
 
 class CustomerHasDebt(Exception):
@@ -24,7 +24,7 @@ class Order:
 
 class CalculadoraReembolso:
     """
-    Domain Service para calcular el reembolso de una sesi�n cancelada (Regla R-06).
+    Domain Service para calcular el reembolso de una sesión cancelada (Regla R-06).
     Basado en el hallazgo H-05 del informe de arquitectura.
     """
     @staticmethod
