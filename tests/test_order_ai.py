@@ -35,7 +35,7 @@ def test_order_vip_rounding():
 @pytest.mark.parametrize("invalid_total", [0, -0.01, -50])
 def test_order_invalid_total(invalid_total):
     order = Order(total=invalid_total)
-    with pytest.raises(ValueError, match="total must be positive"):
+    with pytest.raises(ValueError, match="debe ser mayor a"):
         order.confirm()
     assert order.status == "NEW"  # El estado no debe cambiar
 
@@ -43,7 +43,7 @@ def test_order_invalid_total(invalid_total):
 # 5. Caso de Error: Cliente con deuda pendiente
 def test_order_with_customer_debt():
     order = Order(total=100.0)
-    with pytest.raises(CustomerHasDebt, match="outstanding debt"):
+    with pytest.raises(CustomerHasDebt, match="deuda pendiente"):
         order.confirm(customer_debt=10.5)
     assert order.status == "NEW"
 

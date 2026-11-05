@@ -1,0 +1,13 @@
+﻿ID,Regla,Entrada,Resultado esperado,Resultado real,Tipo,Estado
+CP01,Cliente regular sin descuento,total=120; regular; deuda=0; estado=NEW,"CONFIRMED, cobro 120.00","CONFIRMED, cobro 120.00",Éxito,PASA
+CP02,Descuento VIP del 15%,total=200; VIP; deuda=0; estado=NEW,"CONFIRMED, cobro 170.00","CONFIRMED, cobro 170.00",Éxito,PASA
+CP03,Cliente con deuda no puede confirmar,total=150; regular; deuda=500; estado=NEW,CustomerHasDebt,CustomerHasDebt: El cliente tiene una deuda pendiente de $500.00. Debe liquidarla antes de confirmar el pedido.,Error,PASA
+CP04,Total debe ser mayor a 0 (frontera exacta 0),total=0; regular; deuda=0; estado=NEW,ValueError,ValueError: El total del pedido debe ser mayor a $0.00 (recibido: $0.00). Revisa el monto antes de confirmar.,Límite,PASA
+CP05,Total debe ser mayor a 0 (negativo),total=-10; regular; deuda=0; estado=NEW,ValueError,ValueError: El total del pedido debe ser mayor a $0.00 (recibido: $-10.00). Revisa el monto antes de confirmar.,Error,PASA
+CP06,Descuento VIP del 15% en monto alto,total=1000; VIP; deuda=0; estado=NEW,"CONFIRMED, cobro 850.00","CONFIRMED, cobro 850.00",Éxito,PASA
+CP07,Monto mínimo VIP: el descuento redondea a 0.00,total=0.01; VIP; deuda=0; estado=NEW,"CONFIRMED, cobro 0.01","CONFIRMED, cobro 0.01",Límite,PASA
+CP08,No confirmar un pedido ya confirmado (TDD),total=250; regular; deuda=0; estado=CONFIRMED,OrderAlreadyConfirmed,OrderAlreadyConfirmed: El pedido por $250.00 ya se encuentra confirmado (estatus actual: CONFIRMED). No se puede confirmar dos veces.,Error,PASA
+CP09,Descuento VIP del 15%,total=300; VIP; deuda=0; estado=NEW,"CONFIRMED, cobro 255.00","CONFIRMED, cobro 255.00",Éxito,PASA
+CP10,Cliente regular sin descuento,total=75; regular; deuda=0; estado=NEW,"CONFIRMED, cobro 75.00","CONFIRMED, cobro 75.00",Éxito,PASA
+CP11,Deuda bloquea aunque el cliente sea VIP,total=500; VIP; deuda=250; estado=NEW,CustomerHasDebt,CustomerHasDebt: El cliente tiene una deuda pendiente de $250.00. Debe liquidarla antes de confirmar el pedido.,Error,PASA
+CP12,Redondeo del descuento VIP (14.9985 -> 15.00),total=99.99; VIP; deuda=0; estado=NEW,"CONFIRMED, cobro 84.99","CONFIRMED, cobro 84.99",Límite,PASA
