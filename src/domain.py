@@ -6,10 +6,6 @@ class CustomerHasDebt(Exception):
 class OrderAlreadyConfirmed(ValueError):
     """El pedido ya fue confirmado y no puede confirmarse otra vez."""
 
-class OrderAlreadyConfirmed(ValueError):
-    """El pedido ya fue confirmado y no puede confirmarse otra vez."""
-
-
 @dataclass
 class Order:
     total: float
@@ -39,7 +35,6 @@ class Order:
                 f"El pedido por ${self.total:.2f} ya se encuentra confirmado "
                 f"(estatus actual: {self.status}). No se puede confirmar dos veces."
             )
-
 
 class CalculadoraReembolso:
     """
